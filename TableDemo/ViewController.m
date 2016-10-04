@@ -51,7 +51,6 @@ NSString *strurl;
     
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    
     return [arr count];
 }
 
