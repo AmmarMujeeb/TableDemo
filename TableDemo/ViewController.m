@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DetailViewController.h"
 
 @interface ViewController (){
     NSArray *arr;
@@ -57,8 +58,8 @@ NSString *strurl;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    self.imgv.image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"lrgpic"]]]];
-    self.imgv.hidden = NO;
+    //self.imgv.image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"lrgpic"]]]];
+    //self.imgv.hidden = NO;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,6 +69,7 @@ NSString *strurl;
     // Configure the cell...
     cell.textLabel.text = [[arr objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.detailTextLabel.text =[[arr objectAtIndex:indexPath.row] objectForKey:@"position"];
+    cell.tag = indexPath.row;
 //    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"smallpic"]]]];
     [self updateImage:indexPath cellIs:cell];
     return cell;
@@ -116,6 +118,18 @@ NSString *strurl;
                                     options: NSJSONReadingMutableContainers
                                       error: &error];
     return JSON;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"pushdetail"])
+    {
+        // Get reference to the destination view controller
+        DetailViewController *vc = [segue destinationViewController];
+        
+        int cellno = (int)[sender tag];
+        [vc setUrl:[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
