@@ -69,11 +69,22 @@ NSString *strurl;
     cell.textLabel.text = [[arr objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.detailTextLabel.text =[[arr objectAtIndex:indexPath.row] objectForKey:@"position"];
 //    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"smallpic"]]]];
-    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"smallpic"]]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        cell.imageView.image = [UIImage imageWithData:data];
-        [tableView reloadData];
-    }];
+    [self updateImage:indexPath cellIs:cell];
     return cell;
+}
+
+-(void)updateImage:(NSIndexPath*)indexPath cellIs:(UITableViewCell*)cell{
+//    UITableViewCell *cell = [self.table cellForRowAtIndexPath:indexPath];
+    [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"smallpic"]]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //Update UI
+            cell.imageView.image = [UIImage imageWithData:data];
+            [cell setNeedsLayout];
+        });
+        
+        //[tableView reloadData];
+    }];
+
 }
 
 #pragma  mark - Json Parsing -
