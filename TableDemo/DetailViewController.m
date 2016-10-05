@@ -2,8 +2,8 @@
 //  DetailViewController.m
 //  TableDemo
 //
-//  Created by Ammar on 04/10/2016.
-//  Copyright (c) 2016 ammar. All rights reserved.
+//  Created by Ammar Mujeeb on 10/5/16.
+//  Copyright © 2016 ammar. All rights reserved.
 //
 
 #import "DetailViewController.h"
@@ -16,17 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [_imgview setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:_url]]];
-
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    _imgv.image = [UIImage  imageWithData:[NSData dataWithContentsOfURL:_imgurl]];
 }
 
 /*

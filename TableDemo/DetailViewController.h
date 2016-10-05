@@ -2,14 +2,13 @@
 //  DetailViewController.h
 //  TableDemo
 //
-//  Created by Ammar on 04/10/2016.
-//  Copyright (c) 2016 ammar. All rights reserved.
+//  Created by Ammar Mujeeb on 10/5/16.
+//  Copyright © 2016 ammar. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController
-@property(nonatomic,retain) NSURL *url;
-@property (weak, nonatomic) IBOutlet UIImageView *imgview;
-
+@property(nonatomic,retain) NSURL *imgurl;
+@property(nonatomic,retain) IBOutlet UIImageView *imgv;
 @end

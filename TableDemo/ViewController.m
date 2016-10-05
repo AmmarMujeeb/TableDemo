@@ -126,9 +126,13 @@ NSString *strurl;
     {
         // Get reference to the destination view controller
         DetailViewController *vc = [segue destinationViewController];
-        
+//        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+//        DetailViewController *vc = [[navigationController viewControllers] lastObject];
+    
         int cellno = (int)[sender tag];
-        [vc setUrl:[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
+        vc.imgurl = [NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]];
+//        [vc setUrl:[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
+//        [vc :[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
     }
 }
 
