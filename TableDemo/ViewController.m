@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DetailViewController.h"
+#import "Reachability.h"
 
 @interface ViewController (){
     NSArray *arr;
@@ -18,20 +19,29 @@
 
 @implementation ViewController
 @synthesize table;
-NSString *strurl;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    strurl = @"https://s3-us-west-2.amazonaws.com/wirestorm/assets/response.json";
     
     // Do any additional setup after loading the view, typically from a nib.
     //arr = [NSArray arrayWithObjects:@"one",@"two", nil];
-    [self fetchdata];
-    self.imgv.hidden = YES;
-    
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if (internetStatus != NotReachable) {
+        //my web-dependent code
+        [self fetchdata];
+        self.imgv.hidden = YES;
+    }
+    else {
+        //there-is-no-connection warning
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notification" message:@"You are not connected to Internet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
 }
 
 -(void)fetchdata{
+    NSString *strurl = @"https://s3-us-west-2.amazonaws.com/wirestorm/assets/response.json";
     arr = (NSArray*)[self parseJsonResponse:strurl];
     int total = (int)[arr count];
     
@@ -70,13 +80,13 @@ NSString *strurl;
     cell.textLabel.text = [[arr objectAtIndex:indexPath.row] objectForKey:@"name"];
     cell.detailTextLabel.text =[[arr objectAtIndex:indexPath.row] objectForKey:@"position"];
     cell.tag = indexPath.row;
-//    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"smallpic"]]]];
+    //    cell.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"smallpic"]]]];
     [self updateImage:indexPath cellIs:cell];
     return cell;
 }
 
 -(void)updateImage:(NSIndexPath*)indexPath cellIs:(UITableViewCell*)cell{
-//    UITableViewCell *cell = [self.table cellForRowAtIndexPath:indexPath];
+    //    UITableViewCell *cell = [self.table cellForRowAtIndexPath:indexPath];
     [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"smallpic"]]] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             //Update UI
@@ -86,7 +96,7 @@ NSString *strurl;
         
         //[tableView reloadData];
     }];
-
+    
 }
 
 #pragma  mark - Json Parsing -
@@ -126,13 +136,13 @@ NSString *strurl;
     {
         // Get reference to the destination view controller
         DetailViewController *vc = [segue destinationViewController];
-//        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-//        DetailViewController *vc = [[navigationController viewControllers] lastObject];
-    
+        //        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+        //        DetailViewController *vc = [[navigationController viewControllers] lastObject];
+        
         int cellno = (int)[sender tag];
         vc.imgurl = [NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]];
-//        [vc setUrl:[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
-//        [vc :[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
+        //        [vc setUrl:[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
+        //        [vc :[NSURL URLWithString:[[arr objectAtIndex:cellno] objectForKey:@"smallpic"]]];
     }
 }
 

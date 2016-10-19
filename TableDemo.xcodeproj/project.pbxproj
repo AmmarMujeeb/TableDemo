@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		752B27FB1DB74DE600F276D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 752B27FA1DB74DE600F276D8 /* Reachability.m */; };
 		755731041DA4CFAF003EE06C /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755731031DA4CFAF003EE06C /* DetailViewController.m */; };
 		A0CCB4B71B53997C00A3C948 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CCB4B61B53997C00A3C948 /* main.m */; };
 		A0CCB4BA1B53997C00A3C948 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CCB4B91B53997C00A3C948 /* AppDelegate.m */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		752B27F91DB74DE600F276D8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		752B27FA1DB74DE600F276D8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		755731021DA4CFAF003EE06C /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		755731031DA4CFAF003EE06C /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A0CCB4B11B53997C00A3C948 /* TableDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +87,8 @@
 		A0CCB4B31B53997C00A3C948 /* TableDemo */ = {
 			isa = PBXGroup;
 			children = (
+				752B27F91DB74DE600F276D8 /* Reachability.h */,
+				752B27FA1DB74DE600F276D8 /* Reachability.m */,
 				A0CCB4B81B53997C00A3C948 /* AppDelegate.h */,
 				A0CCB4B91B53997C00A3C948 /* AppDelegate.m */,
 				A0CCB4BB1B53997C00A3C948 /* ViewController.h */,
@@ -228,6 +233,7 @@
 				A0CCB4BA1B53997C00A3C948 /* AppDelegate.m in Sources */,
 				A0CCB4B71B53997C00A3C948 /* main.m in Sources */,
 				755731041DA4CFAF003EE06C /* DetailViewController.m in Sources */,
+				752B27FB1DB74DE600F276D8 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
