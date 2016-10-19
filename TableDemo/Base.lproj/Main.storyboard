@@ -40,9 +40,6 @@
                                     <outlet property="delegate" destination="bFF-eX-VFe" id="JpZ-0c-yTS"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Atb-Pj-bYp">
-                                <rect key="frame" x="1" y="269" width="320" height="299"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -57,7 +54,6 @@
                     <navigationItem key="navigationItem" title="List" id="G6L-dl-OQi"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="imgv" destination="Atb-Pj-bYp" id="kAy-zS-Bgn"/>
                         <outlet property="table" destination="T8b-a6-QgX" id="FKw-bd-B9v"/>
                     </connections>
                 </viewController>

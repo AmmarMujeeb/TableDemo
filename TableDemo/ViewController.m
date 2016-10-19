@@ -31,7 +31,6 @@
     if (internetStatus != NotReachable) {
         //my web-dependent code
         [self fetchdata];
-        self.imgv.hidden = YES;
     }
     else {
         //there-is-no-connection warning
@@ -68,8 +67,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //self.imgv.image =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[arr objectAtIndex:indexPath.row] objectForKey:@"lrgpic"]]]];
-    //self.imgv.hidden = NO;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

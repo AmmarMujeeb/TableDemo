@@ -11,9 +11,6 @@
 @interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property IBOutlet UITableView *table;
-@property (strong, nonatomic) IBOutlet UIImageView *imgv;
-
-
 
 @end
 
