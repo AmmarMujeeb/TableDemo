@@ -75,21 +75,32 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNz-07-PAV">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="fhl-1m-Dbq"/>
+                                    <constraint firstAttribute="height" constant="504" id="wzV-nI-lTQ"/>
+                                </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tgf-YU-RKJ" customClass="UAProgressView">
+                                <rect key="frame" x="130" y="254" width="60" height="60"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.4702544341216216" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="E1Q-Hl-RNl"/>
+                                    <constraint firstAttribute="width" constant="60" id="wMR-U5-eiO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="hlB-Ui-6K4" firstAttribute="top" secondItem="HNz-07-PAV" secondAttribute="bottom" id="45n-T0-WSi"/>
-                            <constraint firstItem="HNz-07-PAV" firstAttribute="centerY" secondItem="6xc-FM-IOI" secondAttribute="centerY" constant="32" id="MUW-xX-VDX"/>
-                            <constraint firstItem="HNz-07-PAV" firstAttribute="top" secondItem="Ked-fF-hhL" secondAttribute="bottom" id="UtB-BR-Eje"/>
-                            <constraint firstItem="HNz-07-PAV" firstAttribute="leading" secondItem="6xc-FM-IOI" secondAttribute="leadingMargin" constant="-20" id="b7T-Nc-EWX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HNz-07-PAV" secondAttribute="trailing" constant="-20" id="hWk-tB-RSO"/>
-                            <constraint firstItem="HNz-07-PAV" firstAttribute="centerX" secondItem="6xc-FM-IOI" secondAttribute="centerX" id="sgr-UU-38c"/>
+                            <constraint firstItem="Tgf-YU-RKJ" firstAttribute="centerY" secondItem="HNz-07-PAV" secondAttribute="centerY" id="I8S-FO-sxq"/>
+                            <constraint firstItem="HNz-07-PAV" firstAttribute="centerY" secondItem="6xc-FM-IOI" secondAttribute="centerY" id="PcE-et-yaz"/>
+                            <constraint firstItem="Tgf-YU-RKJ" firstAttribute="centerX" secondItem="HNz-07-PAV" secondAttribute="centerX" id="Qib-dd-taw"/>
+                            <constraint firstItem="HNz-07-PAV" firstAttribute="centerX" secondItem="6xc-FM-IOI" secondAttribute="centerX" id="qjw-qs-JSe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="uRk-ya-85D"/>
                     <connections>
                         <outlet property="imgv" destination="HNz-07-PAV" id="UTP-lM-9az"/>
+                        <outlet property="progressview" destination="Tgf-YU-RKJ" id="i2y-0p-lFL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fro-lY-FMH" userLabel="First Responder" sceneMemberID="firstResponder"/>

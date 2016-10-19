@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+@interface DetailViewController : UIViewController <NSURLConnectionDataDelegate>
+
+@property (nonatomic) NSMutableData *imageData;
+@property (nonatomic) NSUInteger totalBytes;
+@property (nonatomic) NSUInteger receivedBytes;
 @property(nonatomic,retain) NSURL *imgurl;
 @property(nonatomic,retain) IBOutlet UIImageView *imgv;
+
 @end

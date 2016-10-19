@@ -7,8 +7,10 @@
 //
 
 #import "DetailViewController.h"
+#import <UAProgressView.h>
 
 @interface DetailViewController ()
+@property (strong, nonatomic) IBOutlet UAProgressView *progressview;
 
 @end
 
@@ -25,9 +27,45 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    _imgv.image = [UIImage  imageWithData:[NSData dataWithContentsOfURL:_imgurl]];
+    _progressview.hidden = NO;
+    NSURLRequest *request = [NSURLRequest requestWithURL:_imgurl];
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    [connection start];
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+    NSDictionary *dict = httpResponse.allHeaderFields;
+    NSString *lengthString = [dict valueForKey:@"Content-Length"];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    NSNumber *length = [formatter numberFromString:lengthString];
+    self.totalBytes = length.unsignedIntegerValue;
+    
+    self.imageData = [[NSMutableData alloc] initWithCapacity:self.totalBytes];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [self.imageData appendData:data];
+    self.receivedBytes += data.length;
+    
+    // Actual progress is
+    _progressview.progress =  self.receivedBytes / self.totalBytes;
+    NSLog(@"%lu",(unsigned long)self.receivedBytes);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    _imgv.image = [UIImage imageWithData:self.imageData];
+    _progressview.hidden = YES;
+
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    //handle error
+}
 /*
 #pragma mark - Navigation
 
